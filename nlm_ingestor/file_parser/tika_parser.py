@@ -25,7 +25,7 @@ class TikaFileParser(FileParser):
                 "X-Tika-Timeout-Millis": str(100 * timeout),
                 "X-Tika-OCRtimeoutSeconds": str(timeout),
                 # set ocr language to german
-                "X-Tika-OCRlanguage": "deu",
+                "X-Tika-OCRlanguage": "eng+deu", # brew install tesseract-lang
             }
 
         if ensure_bool(os.environ.get("TIKA_OCR", False)):
