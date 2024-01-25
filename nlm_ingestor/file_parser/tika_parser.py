@@ -24,6 +24,8 @@ class TikaFileParser(FileParser):
                 "X-Tika-OCRoutputType": "hocr",
                 "X-Tika-Timeout-Millis": str(100 * timeout),
                 "X-Tika-OCRtimeoutSeconds": str(timeout),
+                # set ocr language to german
+                "X-Tika-OCRlanguage": "deu",
             }
 
         if ensure_bool(os.environ.get("TIKA_OCR", False)):
