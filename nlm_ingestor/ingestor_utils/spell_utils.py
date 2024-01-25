@@ -11,7 +11,7 @@ from nlm_ingestor.ingestor import patterns
 logger = logging.getLogger(__name__)
 
 
-class SpellUtil:
+class SpellUtil: # only used in test
     def __init__(self):
         self.sym_spell = SymSpell(2, 7)
 

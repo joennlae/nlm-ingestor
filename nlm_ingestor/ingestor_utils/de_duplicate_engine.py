@@ -6,7 +6,7 @@ import numpy as np
 from nlm_utils.model_client import EncoderClient
 
 
-class DeDuplicateEngine:
+class DeDuplicateEngine: # Unused
     def __init__(self, settings, threshold=0.9):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.logger.setLevel(logging.INFO)

@@ -139,7 +139,7 @@ class Doc:
         if self.audited_bbox:
             # Group by page_idx for later usage.
             table_query = {'block_type': 'table'}
-            for page_id, bboxes in groupby(audited_bbox, key=lambda bbox: bbox.page_idx):
+            for page_id, bboxes in groupby(audited_bbox, key=lambda bbox: bbox.page_idx): # HAMANA
                 list_of_bbox = list(bboxes)
                 self.audited_bbox[page_id] = list_of_bbox
                 self.audited_table_bbox[page_id] = list(self.filter_list_of_bbox(list_of_bbox, **table_query))

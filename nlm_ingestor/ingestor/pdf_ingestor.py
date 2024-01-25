@@ -65,7 +65,7 @@ def parse_pdf(doc_location, parse_options):
             p_per_page.append(len(page.find_all("p")))
         p_per_page = np.array(p_per_page)
         sparse_page_count = np.count_nonzero(p_per_page < 4)
-        if apply_ocr:
+        if apply_ocr: # HOW CAN WE END UP HERE?
             # even if ocr is enabled, we don't want to run it if the document is not sparse
             needs_ocr = sparse_page_count / len(pages) > 0.3
             if needs_ocr:

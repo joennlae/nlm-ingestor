@@ -5,7 +5,7 @@ from string import punctuation
 from typing import List, Dict
 from unidecode import unidecode
 
-STOPWORDS_GENE = [
+STOPWORDS_GENE = [ # unused
     'a',
     'about',
     'again',
