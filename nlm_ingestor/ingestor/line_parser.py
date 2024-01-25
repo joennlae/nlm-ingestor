@@ -11,14 +11,15 @@ from .patterns import states
 from .patterns import states_abbreviations
 from .styling_utils import mode_of_list
 
+nltk_language = "german" # english
 try:
-    stop_words = set(stopwords.words("english"))
+    stop_words = set(stopwords.words(nltk_language))
 except Exception as e:
     logging.error(e)
     import nltk
 
     stopwords = nltk.download("stopwords")
-    stop_words = set(stopwords.words("english"))
+    stop_words = set(stopwords.words(nltk_language))
 
 stop_words.add("per")
 continuing_chars = "!\"&'+,./:;<=?@\\]^_`|}~"
@@ -92,10 +93,11 @@ single_char_pattern = re.compile(r'[a-zA-Z]')
 multi_char_pattern = re.compile(r'[a-zA-Z]+')
 roman_number_pattern = re.compile(r'[ixvIXV]+$')
 ends_with_sentence_delimiter_pattern = re.compile(r"(?<![.;:][a-zA-Z0-9])(?<!INC|inc|Inc)[.;:]+(?![\w])[\"“‘’”\'\s]*$")
-conjunction_list = ["for", "and", "not", "but", "or", "yet", "so", "between"]
+conjunction_list = ["for", "and", "not", "but", "or", "yet", "so", "between"] # probably change to german
+conjunction_list_de = ["für", "und", "nicht", "aber", "oder", "noch", "so", "zwischen"] # probably change to german
 
 
-class Word:
+class Word: # all the interesting checks are here
     def __init__(self, token):
         self.text = token
         self.is_percent = False
@@ -152,7 +154,7 @@ class Word:
     def check_date(self):
         if "/" in self.text or "-" in self.text:
             text = self.text.replace("/", "-")
-            date_patterns = [
+            date_patterns = [ # do these date formats make sense?
                 "%b-%d",
                 "%B-%d",
                 "%B-%d-%y",
@@ -648,7 +650,7 @@ class Line:
             if "," in self.text or self.last_word.isupper() and len(self.last_word) <= 2:
                 self.is_reference_author_name = True
 
-        self.last_word_is_co_ordinate_conjunction = self.ends_with_comma or self.last_word in conjunction_list
+        self.last_word_is_co_ordinate_conjunction = self.ends_with_comma or self.last_word in conjunction_list_de
         # print(self.separate_line)
         # self.continuing_line = not self.separate_line and
 
